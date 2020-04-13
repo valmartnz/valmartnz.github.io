@@ -50,147 +50,9 @@
 								<header class="major">
 
 									<h2><a href="https://github.com/valmartnz/midterm.c/blob/master/midterm.c">Midterm Code</h2>
-									<p>// Midterm exam – The C Programming Language, Spring 2020<br />
-										// (Coding section – 52 points)<br />
-										// POST ALL of this CODE to your ______.github.io portfolio.<br />
-										// (8 pts) (1) Find any and all mistakes in the following code, and correct them.<br />
-										<br />
-										void count() {<br />
-										 printf("Enter lines of text here: .../n");<br />
-										 int c, nc = 0, nt = 0, nbackslash = 0, nl = 0;<br />
-										 while ((c = getchar()) != EOF) {<br />
-										 if (c == '\n') { ++nl;<br />
-										 } else if (c == '\t') { ++nt;<br />
-										 } else if (c == '\\') { ++nbackslash;<br />
-										 } else if (isalnum(c)) { ++nc; }<br />
-										 printf("lines: %d\n", nl);<br />
-										 printf("tabs: %d\n", nt);<br />
-										 printf("backslashes: %d\n", nbackslash);<br />
-										 printf("alphanumeric: %d\n", nc);<br />
-										}<br />
-										int main(int argc, const char* argv[]) {<br />
-										 count();<br />
-										 return 0;<br />
-										}
-										<br />
-										<br />
-										// The C Standard Library: Identify the standard library functions that do the following…<br />
-										// (3 pts) (2) Find the first character c in a const char* s: char *strchr(const char* s, char c);<br />
-										// (3 pts) (3) Find the length of the prefix of const char* s that has characters in const char* t: size_t strspn(const char* s,cconst char* t);<br />
-										// (3 pts) (4) Terminate a program immediately: exit();<br />
-										// (3 pts) (5) Open the file “midterm.txt” in read mode: fopen("midterm.txt", "r");<br />
-										<br />
-										<br />
-										// Using pointers, implement each of the following C standard library functions<br />
-										<br />
-										char* strcpy(char* s, const char* t) { // (4 pts) (6)<br />
-										  char* p = s;<br />
-										  while((*s++ = *t++) != '\0') { }<br />
-										  return p;<br />
-										}<br />
-										<br />
-										char* strncat(char* s, const char* t, size_t n) { // (4 pts) (7)<br />
-										  char* p = s;<br />
-										  while(*s != '\0') { ++s; }<br />
-										  while(n-- > 0 && *t != '\0') { *s++ = *t++; }<br />
-										  *s = '\0';<br />
-										  return p;<br />
-										}<br />
-										<br />
-										int strcmp(const char* s, const char* t) { // (4 pts) (8)<br />
-										  while(*s != '\0' && *t != '\0' && *s == *t) {<br />
-											++s;<br />
-											++t;<br />
-										  }<br />
-										  return *s - *t;<br />
-										}<br />
-										<br />
-										<br />
-										// PART III: SHORT PROGRAM<br />
-										//(20 pts) (9) Fill in the program code below for the square ADT (abstract data type)<br />
-										//------ POINT ----------------------------------------------------------------<br />
-										#include <stdio.h> <br />
-										#include <string.h> <br />
-										#include <stdlib.h> <br />
-										<br />
-										typedef struct point point;<br />
-										struct point { double x, y; };<br />
-										//------ SQUARE -----------------------------------------------------------------<br />
-										typedef struct square square;<br />
-										struct square { point ul; size_t side; };<br />
-										<br />
-										square* square_init(double ulx, double uly, double side);<br />
-										void square_delete(square* sq);<br />
-										void square_move(square* sq, double x, double y);<br />
-										void square_expandby(square* sq, double expandby);<br />
-										double square_area(square* sq);<br />
-										double square_perimeter(square* r);<br />
-										<br />
-										// print location, side, area and perimeter<br />
-										void square_print(const char* msg, square* sq);<br />
-										<br />
-										square* square_init(double ulx, double uly, double side) {<br />
-										  point* pt1 = (point*)malloc(sizeof(point));<br />
-										  point* pt2 = (point*)malloc(sizeof(point));<br />
-										  <br />
-										  pt1->x = ulx;<br />
-										  pt2->y = uly;<br />
-										  <br />
-										  square* square_;<br />
-										  square_->ul = (*pt1);<br />
-										  square_->side = side;<br />
-										  <br />
-										  return square_;<br />
-										}<br />
-										<br />
-										void square_delete(square* sq) { free(sq); }<br />
-										<br />
-										void square_move(square* sq, double x, double y) {<br />
-										  pt->x = x;<br />
-										  sq->ul = y;<br />
-										}<br />
-										<br />
-										void square_expandby(square* sq, double expandby) {<br />
-										  sq->side *= 10;<br />
-										}<br />
-										<br />
-										double square_area(square* sq) {<br />
-										  double side_ = sq->side;<br />
-										  return (side_ * side_);<br />
-										}<br />
-										<br />
-										double square_perimeter(square* r){<br />
-										  double side_ = r->side;<br />
-										  return (4 * side_);<br />
-										}<br />
-										<br />
-										void square_print(const char* msg, square* sq) {<br />
-										  printf("%s\n", msg);<br />
-										  printf("Location: lf\nSide: %zu\nArea: %lf\nPerimeter: %lf\n", sq->side, square_area(sq), square_perimeter(sq));<br />
-										}<br />
-										<br />
-										<br />
-										void test_square(double ulx, double uly, double side) {<br />
-										 square* sq = square_init(ulx, uly, side);<br />
-										 square_print("sq is: ", sq);<br />
-										 square_move(sq, 2, 2);<br />
-										 square_print("sq is now: ", sq);<br />
-										 square_expandby(sq, 10);<br />
-										 square_print("sq has expanded to: ", sq);<br />
-										 square_delete(sq);<br />
-										 printf("\n\n");<br />
-										}<br />
-										<br />
-										void tests_square() {<br />
-										 test_square(0, 0, 10);<br />
-										 test_square(1, 1, 5);<br />
-										}<br />
-										int main(int argc, const char* argv[]) {<br />
-										 tests_square();<br />
-										 return 0;<br />
-										}<br />
-										</p>
+									<p> This code represents the first half of my C coding abilities. (Lines 6-38 shown here.) </p>
 								</header>
+								<a href="https://github.com/valmartnz/midterm.c/blob/master/midterm.c" class="image main"><img src="images/pic15.jpg" alt="" /></a>
 								<ul class="actions special">
 									<li><a href="https://github.com/valmartnz/midterm.c/blob/master/midterm.c" class="button large">Check it out</a></li>
 								</ul>
@@ -212,12 +74,12 @@
 								<article>
 									<header>
 
-										<h2><a href="#">Project 2</h2>
+										<h2><a href="#">Linked List Homework</h2>
 									</header>
-									<a href="#" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
-									<p>Description of project 2</p>
+									<a href="https://github.com/valmartnz/Dlist-and-Slist" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
+									<p>This assignment uses pointers to create a singly linked list (slist) and a doubly linked list (dlist).</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Check it out</a></li>
+										<li><a href="https://github.com/valmartnz/Dlist-and-Slist" class="button">Check it out</a></li>
 									</ul>
 								</article>
 							</section>
